@@ -12,7 +12,7 @@ include('db.php');
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Facebook Clone</title>
+  <title>Facebook Clone Anuj</title>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
