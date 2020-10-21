@@ -1,5 +1,7 @@
 <?php
-
+ob_start();
+?>
+<?php
 global $connection;
 
 $connection = mysqli_connect('localhost','root','','fb_clone');
