@@ -37,7 +37,7 @@ include('db.php');
               <div class="text-center">
                 <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
               </div>
-              <form action="" method="POST" class="user">
+              <form action="" method="POST" class="user" enctype="multipart/form-data">
                 <div class="form-group row">
                   <div class="col-sm-12 mb-3 mb-sm-0">
                     <input required type="text" class="form-control form-control-user" id="exampleFirstName" name="user_name" placeholder="Enter Name">
@@ -46,6 +46,10 @@ include('db.php');
                 </div>
                 <div class="form-group">
                   <input required type="email" class="form-control form-control-user" id="exampleInputEmail"  name="user_email" placeholder="Enter Email">
+                </div>
+                <div class="form-group">
+                <label for="">Profile Photo</label>
+                  <input required type="file" class="form-control" id="exampleInputEmail"  name="fileToUpload" placeholder="Enter Email">
                 </div>
                 <div class="form-group row">
                   <div class="col-sm-6 mb-3 mb-sm-0">
@@ -92,21 +96,34 @@ include('db.php');
                 $query_check = "SELECT * FROM users WHERE user_email='$user_email'";
                 $result_query_check = mysqli_query($connection,$query_check);
 
+                $user_profile = $_POST['user_password'];
+
                 if($result_query_check)
                 {
                   $rows = mysqli_num_rows($result_query_check);
                   if($rows == 0)
                   {
-                        $insert = "INSERT INTO users(user_name,user_email,user_password) VALUES('$user_name','$user_email','$user_password') ";
-                        $result = mysqli_query($connection,$insert);
-                        if($result)
-                        {
-                          echo "<script>alert('User Register Successfully')</script>";
-                        }
-                        else
-                        {
-                          echo "Error :".mysqli_error($connection);
-                        }
+                    $target_dir = "images/";
+                    $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+                   
+                    if(move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file))
+                    {
+                      
+                    } else {
+                      echo "error";
+                    }
+                    $file_name = $_FILES["fileToUpload"]["name"];
+
+                    $insert = "INSERT INTO users(user_name,user_email,user_password,user_profile_photo) VALUES('$user_name','$user_email','$user_password','$file_name') ";
+                    $result = mysqli_query($connection,$insert);
+                    if($result)
+                    {
+                      echo "<script>alert('User Register Successfully')</script>";
+                    }
+                    else
+                    {
+                      echo "Error :".mysqli_error($connection);
+                    }
 
                   }
                   else

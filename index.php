@@ -1,6 +1,9 @@
 <?php 
 include('db.php');
 ?>
+<?php
+session_start();
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -72,6 +75,15 @@ include('db.php');
                     $rows = mysqli_num_rows($result_login);
                     if($rows == 1)
                     {
+                      $id = "";
+                      $user_name = "";
+                      while($row = mysqli_fetch_array($result_login))
+                      {
+                        $id = $row['id'];
+                        $user_name = $row['user_name'];
+                      }
+                      $_SESSION["user_id"] = $id;
+                      $_SESSION["user_name"] = $user_name;
                       header("Location:dashboard.php");
                     }
                     else
