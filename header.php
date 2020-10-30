@@ -52,9 +52,14 @@ if(!$_SESSION['user_id'])
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item active">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="dashboard.php">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="add_post.php">
+          <i class="fas fa-fw fa-chart-area"></i>
+          <span>Add Post</span></a>
       </li>
 
       <!-- Divider -->
