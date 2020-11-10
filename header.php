@@ -61,6 +61,11 @@ if(!$_SESSION['user_id'])
           <i class="fas fa-fw fa-chart-area"></i>
           <span>Add Post</span></a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="view_post.php">
+          <i class="fas fa-fw fa-chart-area"></i>
+          <span>View Post</span></a>
+      </li>
 
       <!-- Divider -->
       <hr class="sidebar-divider">
