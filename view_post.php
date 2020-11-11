@@ -43,6 +43,7 @@ include ('header.php');
                     {
                         while($row = mysqli_fetch_array($result_post))
                         {
+                          $id = $row['id'];
                             $title = $row['post_title'];
                             $description = $row['post_description'];
                             $image = $row['post_image'];
@@ -76,8 +77,50 @@ include ('header.php');
                                                                         <p>
                                                                         Date : <?php echo $date?>
                                                                         </p>
+                                            <?php 
+                                            $query_like = "SELECT * FROM likes WHERE post_id = $id";
+                                            $result_like = mysqli_query($connection,$query_like);
+                                            $num_rows = mysqli_num_rows($result_like);
+
+                                            $user_id = $_SESSION['user_id'];
+                                            $query_get_user_like = "SELECT * FROM likes WHERE post_id = $id and user_id='$user_id'";
+                                            $result_query_get_user_like = mysqli_query($connection,$query_get_user_like);
+                                            $like_count = mysqli_num_rows($result_query_get_user_like);
+
+
+
+                                            ?>
+
+                                                                    <form action="" method="POST">
+                                                                        <button type="submit" <?php if($like_count>0){echo "disabled";}?> name="likebtn<?php echo $id;?>" class="btn btn-primary">Like <span><?php echo $num_rows;?></span></button>
+                                                                     </form>
+
+                                                                     <?php 
+
+                                                                      if(isset($_POST['likebtn'.$id]))
+                                                                      {
+                                                                        $user_id = $_SESSION['user_id'];
+
+
+                                                                        
+                                                                        $query_add_like = "INSERT INTO likes(post_id,user_id) VALUES('$id','$user_id')";
+                                                                        $result_like =mysqli_query($connection,$query_add_like);
+                                                                        if($result_like)
+                                                                        {
+                                                                          header("Location:view_post.php");
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                          echo "Error ".mysqli_error($connection);
+                                                                        }
+                                                                        
+                                                                        
+                                                                      }
+                                                                     
+                                                                     ?>
 
                                                             </div>
+                                                            
                                                 
                                                 </div>
                                                 
