@@ -98,7 +98,7 @@ include ('header.php');
                                                                      <?php 
 
                                                                       if(isset($_POST['likebtn'.$id]))
-                                                                      {
+                                                                      { 
                                                                         $user_id = $_SESSION['user_id'];
 
 

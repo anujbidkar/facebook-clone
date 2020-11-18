@@ -66,6 +66,16 @@ if(!$_SESSION['user_id'])
           <i class="fas fa-fw fa-chart-area"></i>
           <span>View Post</span></a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="view_all_user.php">
+          <i class="fas fa-fw fa-chart-area"></i>
+          <span>Friends</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="my_request.php">
+          <i class="fas fa-fw fa-chart-area"></i>
+          <span>My Friend Request</span></a>
+      </li>
 
       <!-- Divider -->
       <hr class="sidebar-divider">
