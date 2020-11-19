@@ -48,7 +48,12 @@ include ('header.php');
 
                                                             if($id != $user_id)
                                                             {
-
+                                                              $from_id = $_SESSION['user_id'];
+                                                              $to_id = $id;
+                                                              $get_staus = "SELECT * FROM friend_request WHERE from_id='$from_id' and to_id='$to_id'  ";
+                                                              $result_get_status = mysqli_query($connection,$get_staus);
+                                                              $num_rows = mysqli_num_rows($result_get_status);
+       
                                                             
                                                     
 
@@ -67,9 +72,21 @@ include ('header.php');
                                                                     
 
                                                                         <input type="hidden" name="friend_id" value="<?php echo $id;?>">
+                                                                    <?php 
+                                                                    if($num_rows == 0)
+                                                                    {
+                                                                    ?>
                                                                     <button type="submit" name="friend_request<?php echo $id; ?>" class="btn btn-primary">
                                                                         Send Request
                                                                     </button>
+                                                                    <?php 
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                      echo "Friend Reqeust Sent";
+                                                                    }
+                                                                    
+                                                                    ?>
                                                                     </form>
 
                                                                     <?php 
